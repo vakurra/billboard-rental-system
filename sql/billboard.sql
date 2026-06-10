@@ -1,0 +1,1 @@
+SELECT * FROM Billboard WHERE quality_score = (%s)

@@ -1,0 +1,363 @@
+/* ===== Общие настройки ===== */
+body {
+    font-family: 'VictorMono', monospace;
+    background: #edfbff;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+/* ===== Контейнер каталога ===== */
+.catalog-wrapper {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #c6f1fe;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== ФИЛЬТРЫ (ПЛАШКА) ===== */
+.catalog-filters {
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.filters-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* ===== Группы фильтров ===== */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;                /* равномерная ширина */
+    min-width: 0;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.filter-group input[type="number"] {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border-radius: 12px;
+    border: 1px solid #bbb;
+    background-color: #f8f8f8;
+    font-family: 'VictorMono', monospace;
+    box-sizing: border-box;
+}
+
+
+.date-row {
+    display: flex;
+    gap: 10px;
+}
+
+.date-row select {
+    padding: 8px 10px;
+    font-size: 15px;
+    border-radius: 12px;
+    border: 1px solid #bbb;
+    background-color: #f8f8f8;
+    font-family: 'VictorMono', monospace;
+}
+
+/* ===== Кнопки фильтров ===== */
+.filter-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.apply-button,
+.reset-button {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'VictorMono', monospace;
+}
+
+.apply-button {
+    background-color: #f0d907;
+    color: black;
+}
+
+.apply-button:hover {
+    background-color: #cbb807;
+}
+
+.reset-button {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.reset-button:hover {
+    background-color: #cfcfcf;
+}
+
+/* ===== Информация / предупреждения ===== */
+.filter-warning {
+    margin: 15px 0 25px;
+    padding: 12px;
+    background-color: #fff3cd;
+    border: 1px solid #ffe69c;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.filter-info {
+    font-family: 'Xanmono', monospace;
+    margin: 15px 0 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.filter-error {
+    margin-bottom: 12px;
+    padding: 10px;
+    background-color: #ffe5e5;
+    border: 1px solid #ff7b7b;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ===== Заголовок каталога ===== */
+.catalog-title {
+    text-align: center;
+    font-size: 28px;
+    font-family: 'Xanmono', monospace;
+    margin: 30px 0 20px;
+}
+
+/* ===== Таблица каталога ===== */
+.catalog-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.catalog-table th,
+.catalog-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 16px;
+}
+
+.catalog-table th {
+    background-color: #f0d907;
+    color: black;
+    font-weight: bold;
+}
+
+.catalog-table tr:nth-child(even) {
+    background-color: #f7f9fc;
+}
+
+.catalog-table tr:hover {
+    background-color: #e4f0ff;
+}
+
+/* ===== Кнопка "В корзину" ===== */
+.catalog-table td {
+    text-align: center;
+}
+
+.catalog-table button.order-button {
+    font-family: 'VictorMono', monospace;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: none;
+    background-color: #f0d907;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.catalog-table button.order-button:hover {
+    background-color: #cbb807;
+}
+
+/* ===== СТАТУС ЗАКАЗА ===== */
+.order-status {
+    margin: 15px 0 25px;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.order-status.success {
+    background-color: #d1e7dd;
+    border: 1px solid #badbcc;
+    color: #15643f;
+}
+
+.order-status.error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    color: #842029;
+}
+
+
+/* ===== Пагинация ===== */
+.pagination {
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.pagination a,
+.pagination span.current-page {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.pagination a {
+    background-color: #f0d907;
+    color: black;
+    transition: background-color 0.2s;
+}
+
+.pagination a:hover {
+    background-color: #cbb807;
+}
+
+.pagination span.current-page {
+    background-color: #f07f07;
+    color: white;
+}
+
+/* ===== ДВУХКОЛОНОЧНЫЙ LAYOUT ===== */
+.catalog-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* ===== ОСНОВНАЯ ЧАСТЬ ===== */
+.catalog-main {
+    flex: 1;
+}
+
+/* ===== КОРЗИНА ===== */
+.cart-panel {
+    width: 350px;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 160px;
+}
+
+.cart-title {
+    text-align: center;
+    font-family: 'Xanmono', monospace;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* ===== ТАБЛИЦА КОРЗИНЫ ===== */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    text-align: center;
+}
+
+.cart-table th {
+    background-color: #f0d907;
+    font-weight: bold;
+}
+
+.cart-empty {
+    text-align: center;
+    font-style: italic;
+    padding: 15px;
+}
+
+/* ===== КНОПКИ КОРЗИНЫ ===== */
+.cart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cart-clear,
+.cart-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-family: 'VictorMono', monospace;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+
+.cart-clear {
+    background-color: #e0e0e0;
+    color: black;
+    text-decoration: none;
+}
+
+.cart-clear:hover {
+    background-color: #cfcfcf;
+}
+
+.cart-submit {
+    background-color: #f0d907;
+}
+
+.cart-submit:hover {
+    background-color: #cbb807;
+}
+
+
+.cart-total {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 12px;
+}

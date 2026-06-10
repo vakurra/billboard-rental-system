@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{{ url_for('reports.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="report-wrapper">
+
+        <h2>{{ title }}</h2>
+
+        {% if error_message %}
+            <div class="report-error">
+                {{ error_message }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            {% for field in fields %}
+
+                <label>{{ field.label }}</label>
+
+                {% if field.type == "select" %}
+
+                    <select name="{{ field.name }}" required>
+                        {% for opt in field.options %}
+                            <option value="{{ opt.value }}">{{ opt.text }}</option>
+                        {% endfor %}
+                    </select>
+
+                {% else %}
+
+                    <input
+                        type="{{ field.type }}"
+                        name="{{ field.name }}"
+                        placeholder="{{ field.placeholder or '' }}"
+                        required
+                    >
+
+                {% endif %}
+
+            {% endfor %}
+
+            <div class="report-buttons">
+
+                <button type="submit" name="action" value="create">
+                    {{ submit_create }}
+                </button>
+
+                <button type="submit" name="action" value="view">
+                    {{ submit_view }}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock %}

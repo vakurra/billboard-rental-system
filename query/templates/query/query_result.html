@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('query.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block title %}Результаты запроса{% endblock %}
+
+{% block content %}
+<div class="dynamic-table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>ID билборда</th>
+                <th>Адрес установки</th>
+                <th>Размер</th>
+                <th>Стоимость</th>
+                <th>Показатель качества</th>
+                <th>ID владельца</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in results %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="table-buttons">
+    <form action="{{ url_for('query.menu') }}" method="get" style="display:inline;">
+        <button type="submit">В меню запросов</button>
+    </form>
+</div>
+{% endblock %}

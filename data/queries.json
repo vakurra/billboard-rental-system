@@ -1,0 +1,115 @@
+{
+  "billboard": {
+    "title": "Билборды по качеству",
+    "sql": "billboard.sql",
+    "submit_text": "Выполнить запрос",
+
+    "fields": [
+      {
+        "name": "quality_score",
+        "label": "Введите показатель качества (1–10)",
+        "type": "text"
+      }
+    ],
+
+    "sql_params": ["quality_score"]
+  },
+
+  "billboards-by-arendator": {
+    "title": "Билборды арендатора по периоду",
+    "sql": "billboards_by_arendator.sql",
+    "submit_text": "Выполнить запрос",
+
+    "fields": [
+      {
+        "name": "lastname",
+        "label": "Фамилия арендатора",
+        "type": "text"
+      },
+      {
+        "name": "month",
+        "label": "Месяц",
+        "type": "select",
+        "options": [
+          {"value": "1", "text": "Январь"},
+          {"value": "2", "text": "Февраль"},
+          {"value": "3", "text": "Март"},
+          {"value": "4", "text": "Апрель"},
+          {"value": "5", "text": "Май"},
+          {"value": "6", "text": "Июнь"},
+          {"value": "7", "text": "Июль"},
+          {"value": "8", "text": "Август"},
+          {"value": "9", "text": "Сентябрь"},
+          {"value": "10", "text": "Октябрь"},
+          {"value": "11", "text": "Ноябрь"},
+          {"value": "12", "text": "Декабрь"}
+        ]
+      },
+      {
+        "name": "year",
+        "label": "Год",
+        "type": "text",
+        "placeholder": "например, 2024"
+      }
+    ],
+
+    "sql_params": ["lastname", "month", "year"]
+  },
+
+  "by_cost": {
+    "title": "Билборды по диапазону стоимости",
+    "sql": "billboards_by_cost.sql",
+    "submit_text": "Выполнить запрос",
+
+    "fields": [
+      {
+        "name": "min_cost",
+        "label": "Минимальная стоимость",
+        "type": "text"
+      },
+      {
+        "name": "max_cost",
+        "label": "Максимальная стоимость",
+        "type": "text"
+      }
+    ],
+
+    "sql_params": ["min_cost", "max_cost"]
+  },
+
+  "free_billboards": {
+    "title": "Свободные билборды по месяцу",
+    "sql": "free_billboards.sql",
+    "submit_text": "Показать свободные билборды",
+
+    "fields": [
+      {
+        "name": "month",
+        "label": "Месяц",
+        "type": "select",
+        "options": [
+          {"value": "1", "text": "Январь"},
+          {"value": "2", "text": "Февраль"},
+          {"value": "3", "text": "Март"},
+          {"value": "4", "text": "Апрель"},
+          {"value": "5", "text": "Май"},
+          {"value": "6", "text": "Июнь"},
+          {"value": "7", "text": "Июль"},
+          {"value": "8", "text": "Август"},
+          {"value": "9", "text": "Сентябрь"},
+          {"value": "10", "text": "Октябрь"},
+          {"value": "11", "text": "Ноябрь"},
+          {"value": "12", "text": "Декабрь"}
+        ]
+      },
+      {
+        "name": "year",
+        "label": "Год",
+        "type": "text",
+        "placeholder": "например, 2024"
+      }
+    ],
+
+    "sql_params": ["month", "month", "year"]
+  }
+}

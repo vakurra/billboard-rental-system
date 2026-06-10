@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('query.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block title %}Меню запросов{% endblock %}
+
+{% block content %}
+<div class="query-form-wrapper">
+    <h2>Меню запросов</h2>
+
+    <div class="query-menu">
+
+        {% for key, query in queries.items() %}
+        <form action="{{ url_for('query.process_query', query_name=key) }}" method="get">
+            <button type="submit">
+                {{ query.title }}
+            </button>
+        </form>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

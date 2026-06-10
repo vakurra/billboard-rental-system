@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{{ url_for('reports.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block title %}Меню отчетов{% endblock %}
+
+{% block content %}
+    <div class="report-wrapper">
+
+        <h2>Меню отчетов</h2>
+
+        <div class="report-menu">
+
+            {% for key, report in reports.items() %}
+
+                <a href="{{ url_for('reports.process_report', report_type=key) }}">
+                    <button>{{ report.title }}</button>
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+{% endblock %}

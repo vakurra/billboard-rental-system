@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('auth.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="error-wrapper">
+    <div class="error-card">
+        <h2>Ошибка</h2>
+        <p>{{ err_message }}</p>
+
+        <a class="error-back" href="{{ url_for('auth.login') }}">Ко входу</a>
+    </div>
+</div>
+{% endblock %}

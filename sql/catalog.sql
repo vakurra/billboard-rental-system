@@ -1,0 +1,1 @@
+SELECT b_id, install_address, size, cost FROM Billboard

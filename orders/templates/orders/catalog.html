@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('orders.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block title %}Каталог билбордов{% endblock %}
+
+{% block content %}
+
+<div class="catalog-wrapper">
+
+    <div class="catalog-main">
+
+        <form method="post"
+              action="{{ url_for('orders.catalog', page=page) }}"
+              class="catalog-filters">
+
+            {% if error_message %}
+                <div class="filter-error">{{ error_message }}</div>
+            {% endif %}
+
+            <div class="filters-row">
+
+                <div class="filter-group">
+                    <label>Начало аренды</label>
+                    <div class="date-row">
+                        <select name="start_month" required>
+                            {% for m in range(1,13) %}
+                                <option value="{{ m }}">{{ "%02d"|format(m) }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="start_year" required>
+                            {% for y in range(2024, 2031) %}
+                                <option value="{{ y }}">{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Окончание аренды</label>
+                    <div class="date-row">
+                        <select name="end_month" required>
+                            {% for m in range(1,13) %}
+                                <option value="{{ m }}">{{ "%02d"|format(m) }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="end_year" required>
+                            {% for y in range(2024, 2031) %}
+                                <option value="{{ y }}">{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>ID арендатора</label>
+                    <input type="number"
+                           name="arendator_id"
+                           required
+                           value="{{ arendator_id or '' }}">
+                </div>
+
+                <div class="filter-actions">
+                    <button type="submit" class="apply-button">Применить</button>
+                    <a href="{{ url_for('orders.clear_filters') }}" class="reset-button">
+                        Сбросить
+                    </a>
+                </div>
+
+            </div>
+        </form>
+
+        <h2 class="catalog-title">КАТАЛОГ БИЛБОРДОВ</h2>
+
+        {% if warning_message %}
+            <div class="filter-warning">{{ warning_message }}</div>
+        {% endif %}
+
+
+        {% if filters_applied %}
+            <div class="filter-info">
+                Арендатор: <strong>{{ arendator_name }}</strong><br>
+                Период аренды:
+                01.{{ "%02d"|format(rent_start.month) }}.{{ rent_start.year }}
+                –
+                01.{{ "%02d"|format(rent_end.month) }}.{{ rent_end.year }}
+            </div>
+        {% endif %}
+
+        <table class="catalog-table">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Адрес</th>
+                    <th>Размер</th>
+                    <th>Стоимость / мес</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in results %}
+                <tr>
+                    <td>{{ loop.index + offset }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>
+                        <form action="{{ url_for('orders.add_to_cart', page=page) }}" method="post">
+                            <input type="hidden" name="billboard_id" value="{{ row[0] }}">
+                            <button type="submit" class="order-button">
+                                В корзину
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if total_pages > 1 %}
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="{{ url_for('orders.catalog', page=page-1) }}">« Назад</a>
+            {% endif %}
+
+            {% for p in range(1, total_pages + 1) %}
+                {% if p == page %}
+                    <span class="current-page">{{ p }}</span>
+                {% else %}
+                    <a href="{{ url_for('orders.catalog', page=p) }}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page < total_pages %}
+                <a href="{{ url_for('orders.catalog', page=page+1) }}">Вперёд »</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </div>
+
+    <aside class="cart-panel">
+        <h3 class="cart-title">КОРЗИНА</h3>
+
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Адрес</th>
+                    <th>Месяцев</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if cart %}
+                    {% for item in cart %}
+                    <tr>
+                        <td>{{ item.address }}</td>
+                        <td>{{ item.months }}</td>
+                        <td>{{ item.total }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="cart-empty">Корзина пуста</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        {% if cart %}
+            <div class="cart-total">
+                Итого: {{ cart_total }} рублей
+            </div>
+        {% endif %}
+
+        <div class="cart-actions">
+            <a href="{{ url_for('orders.clear_cart') }}" class="cart-clear">
+                Очистить корзину
+            </a>
+
+            <form method="post" action="{{ url_for('orders.submit_order') }}">
+                <button type="submit" class="cart-submit">
+                    Оформить заказ
+                </button>
+            </form>
+        </div>
+
+        {% if order_message %}
+            <div class="order-status {{ order_status }}">
+                {{ order_message }}
+            </div>
+        {% endif %}
+
+    </aside>
+
+</div>
+
+{% endblock %}

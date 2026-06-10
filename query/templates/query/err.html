@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('query.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block title %}Ошибка{% endblock %}
+
+{% block content %}
+<div class="query-error">
+    <h2>Ошибка</h2>
+    <p>{{ err_message }}</p>
+    <form action="{{ url_for('query.menu') }}" method="get">
+        <button type="submit">Вернуться к работе с запросами</button>
+    </form>
+</div>
+{% endblock %}

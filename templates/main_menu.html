@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Главное меню{% endblock %}
+
+{% block content %}
+<div class="welcome">
+    <h1>Добро пожаловать в информационную систему «Наружная реклама»</h1>
+</div>
+
+<div class="cards-container">
+
+    {% if session['role'] == 'manager' %}
+    <div class="catalog-card">
+        <a href="{{ url_for('orders.catalog') }}">
+            <div class="catalog-overlay">
+                <span class="catalog-text">МЕНЮ ЗАКАЗОВ</span>
+            </div>
+            <img src="{{ url_for('static', filename='images/catalog.jpg') }}"
+                 alt="Каталог билбордов">
+        </a>
+    </div>
+    {% endif %}
+
+    {% if session['role'] == 'admin' %}
+    <div class="catalog-card">
+        <a href="{{ url_for('reports.menu') }}">
+            <div class="catalog-overlay">
+                <span class="catalog-text">МЕНЮ ОТЧЁТОВ</span>
+            </div>
+            <img src="{{ url_for('static', filename='images/reports.png') }}"
+                 alt="Меню отчётов">
+        </a>
+    </div>
+    {% endif %}
+
+    {% if session['role'] in ['manager', 'admin'] %}
+    <div class="catalog-card">
+        <a href="{{ url_for('query.menu') }}">
+            <div class="catalog-overlay">
+                <span class="catalog-text">МЕНЮ ЗАПРОСОВ</span>
+            </div>
+            <img src="{{ url_for('static', filename='images/queries.png') }}"
+                 alt="Меню запросов">
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

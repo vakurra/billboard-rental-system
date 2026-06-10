@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{{ url_for('query.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="query-form-wrapper">
+
+        <h2>{{ title }}</h2>
+
+        <form method="POST">
+
+            {% for field in fields %}
+
+                <label>{{ field.label }}</label>
+
+                {% if field.type == "select" %}
+
+                    <select name="{{ field.name }}" required>
+                        {% for opt in field.options %}
+                            <option value="{{ opt.value }}">{{ opt.text }}</option>
+                        {% endfor %}
+                    </select>
+
+                {% else %}
+
+                    <input
+                        type="{{ field.type }}"
+                        name="{{ field.name }}"
+                        placeholder="{{ field.placeholder or '' }}"
+                        required
+                    >
+
+                {% endif %}
+
+            {% endfor %}
+
+            <button type="submit">
+                {{ submit_text }}
+            </button>
+
+        </form>
+
+    </div>
+
+{% endblock %}

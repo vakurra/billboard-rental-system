@@ -1,0 +1,179 @@
+/* ===== Общие настройки ===== */
+body {
+    font-family: 'VictorMono', monospace;
+    background: #edfbff;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+/* ===== Форма запроса ===== */
+.query-form-wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #c6f1fe;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.query-form-wrapper h2 {
+    text-align: center;
+    font-size: 28px;
+    font-family: 'Xanmono', monospace;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.query-form-wrapper form {
+    width: 100%;
+}
+
+.query-form-wrapper label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+}
+
+/* универсальные поля формы */
+.query-form-wrapper input,
+.query-form-wrapper select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-family: 'VictorMono', monospace;
+}
+
+/* кнопка формы */
+.query-form-wrapper button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    background-color: #f0d907;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.query-form-wrapper button:hover {
+    background-color: #cbb807;
+}
+
+/* ===== Меню запросов ===== */
+.query-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.query-menu button {
+    width: 100%;
+}
+
+/* ===== Таблица результатов ===== */
+.dynamic-table-wrapper {
+    max-width: 800px;
+    margin: 50px auto;
+    overflow-x: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.dynamic-table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'VictorMono', monospace;
+}
+
+.dynamic-table-wrapper th,
+.dynamic-table-wrapper td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.dynamic-table-wrapper th {
+    background-color: #f0d907;
+    color: black;
+    font-weight: bold;
+}
+
+.dynamic-table-wrapper tr:nth-child(even) {
+    background-color: #f7f9fc;
+}
+
+/* ===== Кнопки под таблицей ===== */
+.table-buttons {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.table-buttons button {
+    font-family: 'VictorMono', monospace;
+    font-size: 16px;
+    padding: 10px 25px;
+    margin: 0 10px;
+    border-radius: 12px;
+    border: none;
+    background-color: #f0d907;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.table-buttons button:hover {
+    background-color: #cbb807;
+}
+
+/* ===== Блок ошибок ===== */
+.query-error {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #ffe5e5;
+    border: 1px solid #ff7b7b;
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'VictorMono', monospace;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.query-error h2 {
+    color: #d9534f;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.query-error p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.query-error form button {
+    font-family: 'VictorMono', monospace;
+    font-size: 18px;
+    padding: 12px 30px;
+    border-radius: 16px;
+    border: none;
+    background-color: #f0d907;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.query-error form button:hover {
+    background-color: #cbb807;
+}
